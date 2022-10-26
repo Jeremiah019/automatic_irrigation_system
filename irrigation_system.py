@@ -1,8 +1,9 @@
 import tkinter as tk
 import ttkbootstrap as ttk
-import time
+from tkinter import *
 
 root = tk.Tk()
+root.title("Automatic Irrigation System")
 style = ttk.Style("superhero")
 
 
@@ -71,24 +72,52 @@ button_off = ttk.Button(master = btn_labels,
            command = lambda: stop(),
            ).pack(side = 'left', expand = 'true' )
 
+progress = ttk.Progressbar(root, bootstyle="striped", 
+            orient='horizontal', 
+            length=500, mode='determinate')
+
 def start():
     btn_labels_1 = ttk.Label(
         master=root,
         bootstyle = "sucess",
-        text = "Water is running...",
+        text = "System is running...",
         width = 20,
-        ).place(relx=0.54, rely=0.90, anchor='center')
+        ).place(relx=0.53, rely=0.90, anchor='center')
 
-    progress = ttk.Progressbar(master = root, bootstyle="striped", orient='horizontal', length=100, mode='indeterminate'
-        ).place(relx=0.51, rely=0.95, anchor='center')
-    progress.start(10)
+    progress.place(relx=0.51, rely=0.95, anchor='center')
+
+    import time
+    progress['value'] = 20
+    root.update_idletasks()
+    time.sleep(1)
+  
+    progress['value'] = 40
+    root.update_idletasks()
+    time.sleep(1)
+  
+    progress['value'] = 50
+    root.update_idletasks()
+    time.sleep(1)
+  
+    progress['value'] = 60
+    root.update_idletasks()
+    time.sleep(1)
+  
+    progress['value'] = 80
+    root.update_idletasks()
+    time.sleep(1)
+    progress['value'] = 100
+
 
 def stop():
     btn_labels_2 = ttk.Label(
         master=root,
         bootstyle = "sucess",
-        text = "Water is off",
+        text = "System shutdown...",
         width = 20,
-        ).place(relx=0.54, rely=0.90, anchor='center')
+        ).place(relx=0.53, rely=0.90, anchor='center')
+        
+    progress.destroy()
+    
 
 root.mainloop()
