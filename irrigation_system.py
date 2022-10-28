@@ -7,6 +7,7 @@ import customtkinter
 LARGEFONT =("Verdana", 35)
 
 def turn_off():
+	print("shutting down...")
 	root.destroy()
 
 class tkinterApp(tk.Tk):
@@ -74,7 +75,7 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         
         label = ttk.Label(self, text ="Automatic Irrigation System", font = "-size 16")
-        label.grid(row = 0, column = 4, padx = 10, pady = 10)
+        label.place(anchor = "center", relx = 0.5, rely = 0.05)
                 
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
@@ -100,7 +101,7 @@ class Page1(tk.Frame):
 		
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="Temperature", font = "-size 16")
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label.place(anchor = "center", relx = 0.5, rely = 0.05)
 
 		meter = ttk.Meter(self,
                     metersize=250,
@@ -111,7 +112,7 @@ class Page1(tk.Frame):
                     textright='%',
                     bootstyle='success',
                     interactive=True
-                    ).place(relx=0.5, rely=0.20, anchor='n')
+                    ).place(relx=0.5, rely=0.15, anchor='n')
 
 		label2 = ttk.Label(self)
 		label2.place(anchor = "center", relx = 0.5, rely = 0.90)
@@ -129,7 +130,7 @@ class Page1(tk.Frame):
 	
 		# putting the button in its place by
 		# using grid
-		button.place(anchor = "center", relx = 0.5, rely = 0.80)
+		button.place(anchor = "center", relx = 0.5, rely = 0.75)
 		button1.grid(row = 1, column = 1)
 		button2.grid(row = 1, column = 2)
 		button3.grid(row = 2, column = 1)
@@ -140,7 +141,7 @@ class Page2(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="Soil Moisture", font = "-size 16")
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label.place(anchor = "center", relx = 0.5, rely = 0.05)
 
 
 		meter_1 = ttk.Meter(self,
@@ -152,7 +153,7 @@ class Page2(tk.Frame):
                     subtext='Soil Moisture',
                     bootstyle='info',
                     interactive=True
-                    ).place(relx=0.5, rely=0.20, anchor='n')
+                    ).place(relx=0.5, rely=0.15, anchor='n')
 
 		label2 = ttk.Label(self)
 		label2.place(anchor = "center", relx = 0.5, rely = 0.90)
@@ -172,7 +173,7 @@ class Page2(tk.Frame):
 	
 		# putting the button in its place by
 		# using grid
-		button.place(anchor = "center", relx = 0.5, rely = 0.80)
+		button.place(anchor = "center", relx = 0.5, rely = 0.75)
 		button1.grid(row = 1, column = 1)
 		button2.grid(row = 1, column = 2)
 		button3.grid(row = 2, column = 1)
@@ -183,7 +184,7 @@ class Page3(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="Humidity", font = "-size 16")
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label.place(anchor = "center", relx = 0.5, rely = 0.05)
 
 
 		meter_1 = ttk.Meter(self,
@@ -195,7 +196,7 @@ class Page3(tk.Frame):
                     subtext='Humidity',
                     bootstyle='info',
                     interactive=True
-                    ).place(relx=0.5, rely=0.20, anchor='n')
+                    ).place(relx=0.5, rely=0.15, anchor='n')
 
 
 		label2 = ttk.Label(self)
@@ -216,7 +217,7 @@ class Page3(tk.Frame):
 	
 		# putting the button in its place by
 		# using grid
-		button.place(anchor = "center", relx = 0.5, rely = 0.80)
+		button.place(anchor = "center", relx = 0.5, rely = 0.75)
 		button1.grid(row = 1, column = 1)
 		button2.grid(row = 1, column = 2)
 		button3.grid(row = 2, column = 1)
@@ -227,7 +228,7 @@ class Page4(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="Water Level", font = "-size 16")
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label.place(anchor = "center", relx = 0.5, rely = 0.05)
 
 		meter_1 = ttk.Meter(self,
                     metersize=250,
@@ -238,7 +239,7 @@ class Page4(tk.Frame):
                     subtext='Water Level',
                     bootstyle='info',
                     interactive=True
-                    ).place(relx=0.5, rely=0.20, anchor='n')
+                    ).place(relx=0.5, rely=0.15, anchor='n')
 
 		label2 = ttk.Label(self)
 		label2.place(anchor = "center", relx = 0.5, rely = 0.90)
@@ -258,7 +259,7 @@ class Page4(tk.Frame):
 	
 		# putting the button in its place by
 		# using grid
-		button.place(anchor = "center", relx = 0.5, rely = 0.80)
+		button.place(anchor = "center", relx = 0.5, rely = 0.75)
 		button1.grid(row = 1, column = 1)
 		button2.grid(row = 1, column = 2)
 		button3.grid(row = 2, column = 1)
