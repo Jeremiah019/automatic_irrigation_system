@@ -6,6 +6,9 @@ import customtkinter
 
 LARGEFONT =("Verdana", 35)
 
+def turn_off():
+	root.destroy()
+
 class tkinterApp(tk.Tk):
 	# __init__ function for class tkinterApp
 	def __init__(self, *args, **kwargs):
@@ -51,17 +54,16 @@ class Loading(tk.Frame):
 
 	# label of frame Layout 2
         label = ttk.Label(self, text ="Automatic Irrigation System", font = "-size 16")
-		
-	# putting the grid in its place by using
-        # grid
         label.place(anchor = "center", relx = 0.5, rely = 0.20)
 
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
 
-        button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40, fg_color=("#76BA1B"), hover_color="#ACDF87",
-                                                 text ="StartPage", command = lambda: controller.show_frame(StartPage))
-        button.place(anchor = "center", relx = 0.5, rely = 0.80)
+        button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40, fg_color=("#76BA1B"), hover_color="#ACDF87", text ="On", command = lambda: controller.show_frame(StartPage))
+        button.place(anchor = "center", relx = 0.5, rely = 0.50)
+		
+        button_1 = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40, fg_color=("#ff0000"), hover_color="#ff7b7b",text ="Off", command = lambda: turn_off())
+        button_1.place(anchor = "center", relx = 0.5, rely = 0.60)
 
         
 # second window frame page1
@@ -76,39 +78,6 @@ class StartPage(tk.Frame):
                 
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
-
-        # btn_labels_1 = ttk.Label(master=label2, bootstyle = "sucess", text = "System is running...", width = 20)
-        # btn_labels_1.place(relx=0.25, rely=0.50, anchor='center')
-
-        # progress = ttk.Progressbar(label2, bootstyle = "striped", orient='horizontal', length=200, mode='determinate')
-        # progress.place(relx=0.50, rely=0.50, anchor='center')
-
-        # import time
-
-        # progress['value'] = 20
-        # label2.update_idletasks()
-        # time.sleep(1)
-
-        # progress['value'] = 40
-        # label2.update_idletasks()
-        # time.sleep(1)
-
-        # progress['value'] = 50
-        # label2.update_idletasks()
-        # time.sleep(1)
-
-        # progress['value'] = 60
-        # self.update_idletasks()
-        # time.sleep(1)
-
-        # progress['value'] = 80
-        # label2.update_idletasks()
-        # time.sleep(1)
-
-        # progress['value'] = 100
-        # label2.update_idletasks()
-        # btn_labels_1.destroy()
-        # progress.destroy()
 
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.50)
