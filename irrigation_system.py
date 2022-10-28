@@ -59,7 +59,7 @@ class Loading(tk.Frame):
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
 
-        button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color="#76BA1B", hover_color="#ACDF87",
+        button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40, fg_color=("#76BA1B"), hover_color="#ACDF87",
                                                  text ="StartPage", command = lambda: controller.show_frame(StartPage))
         button.place(anchor = "center", relx = 0.5, rely = 0.80)
 
@@ -72,7 +72,7 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         
         label = ttk.Label(self, text ="Automatic Irrigation System", font = "-size 16")
-        label.place(anchor = "center", relx = 0.5, rely = 0.20)
+        label.grid(row = 0, column = 4, padx = 10, pady = 10)
                 
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
@@ -133,7 +133,6 @@ class Page1(tk.Frame):
 		label = ttk.Label(self, text ="Temperature", font = "-size 16")
 		label.grid(row = 0, column = 4, padx = 10, pady = 10)
 
-
 		meter = ttk.Meter(self,
                     metersize=250,
                     padding=20,
@@ -148,7 +147,7 @@ class Page1(tk.Frame):
 		label2 = ttk.Label(self)
 		label2.place(anchor = "center", relx = 0.5, rely = 0.90)
 	
-		button = customtkinter.CTkButton(label, width=40, height=40, corner_radius=40, hover_color="#ACDF87",
+		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color="#76BA1B", hover_color="#ACDF87",
                                                  text ="StartPage", command = lambda : controller.show_frame(StartPage))
 		button1 = customtkinter.CTkButton(label2, text ="Temperature", command = lambda : controller.show_frame(Page1))
 	
