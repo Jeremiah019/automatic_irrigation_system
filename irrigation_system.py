@@ -4,7 +4,7 @@ from tkinter import *
 import ttkbootstrap as ttk
 import customtkinter
 
-LARGEFONT =("Verdana", 35)
+LARGEFONT =("Arial", 35)
 
 def turn_off():
 	print("shutting down...")
@@ -20,9 +20,12 @@ class tkinterApp(tk.Tk):
 		# creating a container
 		container = tk.Frame(self, height = 350, width = 50)
 		container.pack(side = "top", fill = "both", expand = True)
+		container.configure(bg = '#FFFFFF')
 
 		container.grid_rowconfigure(0, weight = 1)
 		container.grid_columnconfigure(0, weight = 1)
+
+		# self.label = {}
 
 		# initializing frames to an empty array
 		self.frames = {}
@@ -32,6 +35,7 @@ class tkinterApp(tk.Tk):
 		for F in (Loading, StartPage, Page1, Page2, Page3, Page4):
 
 			frame = F(container, self)
+			frame.configure(bg = '#FFFFFF')
 
 			# initializing frame of that object from
 			# startpage, page1, page2 respectively with
@@ -51,7 +55,8 @@ class tkinterApp(tk.Tk):
 # first window frame startpage
 class Loading(tk.Frame):  
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+
+        tk.Frame.__init__(self, parent, bg = "#FFFFFF")
 
 	# label of frame Layout 2
         label = ttk.Label(self, text ="Automatic Irrigation System", font = "-size 16")
@@ -60,10 +65,12 @@ class Loading(tk.Frame):
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
 
-        button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40, fg_color=("#76BA1B"), hover_color="#ACDF87", text ="On", command = lambda: controller.show_frame(StartPage))
+        photo = PhotoImage(file = r"C:\Users\callm\Documents\GitHub\automatic_irrigation_system\icons8-shutdown-24(-ldpi).png")
+
+        button = customtkinter.CTkButton(self, width=40, height=40, image = photo, text = "On", corner_radius=40, fg_color=("#76BA1B"), hover_color="#ACDF87", command = lambda: controller.show_frame(StartPage))
         button.place(anchor = "center", relx = 0.5, rely = 0.50)
 		
-        button_1 = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40, fg_color=("#ff0000"), hover_color="#ff7b7b",text ="Off", command = lambda: turn_off())
+        button_1 = customtkinter.CTkButton(self, width=40, height=40, image = photo, text = "Off", corner_radius=40, fg_color=("#ff0000"), hover_color="#ff7b7b", command = lambda: turn_off())
         button_1.place(anchor = "center", relx = 0.5, rely = 0.60)
 
         
@@ -80,13 +87,15 @@ class StartPage(tk.Frame):
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
 
-        label2 = ttk.Label(self)
+        label2 = ttk.Label(self, width=100)
         label2.place(anchor = "center", relx = 0.5, rely = 0.50)
 
-        button1 = customtkinter.CTkButton(label2, text ="Temperature", width=100, height=100,command = lambda : controller.show_frame(Page1))
-        button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", width=100, height=100,command = lambda : controller.show_frame(Page2))
-        button3 = customtkinter.CTkButton(label2, text ="Humidity",width=100, height=100, command = lambda : controller.show_frame(Page3))
-        button4 = customtkinter.CTkButton(label2, text ="Water Level",width=100, height=100, command = lambda : controller.show_frame(Page4))
+        photo = PhotoImage(file = r"C:\Users\callm\Documents\GitHub\automatic_irrigation_system\thermometer_FILL0_wght400_GRAD0_opsz48.png")
+
+        button1 = customtkinter.CTkButton(label2, image = photo, text ="", fg_color= "#FFFFFF", hover_color= "#7EC8E3", width=100, height=100,command = lambda : controller.show_frame(Page1))
+        button2 = customtkinter.CTkButton(label2, text ="Soil Moisture",fg_color= "#FFFFFF", hover_color= "#7EC8E3",width=100, height=100,command = lambda : controller.show_frame(Page2))
+        button3 = customtkinter.CTkButton(label2, text ="Humidity",fg_color= "#FFFFFF",hover_color= "#7EC8E3",width=100, height=100, command = lambda : controller.show_frame(Page3))
+        button4 = customtkinter.CTkButton(label2, text ="Water Level",fg_color= "#FFFFFF",hover_color= "#7EC8E3",width=100, height=100, command = lambda : controller.show_frame(Page4))
                 
         button1.grid(row = 1, column = 1, padx = 10, pady = 10)
         button2.grid(row = 1, column = 2, padx = 10, pady = 10)
@@ -105,11 +114,12 @@ class Page1(tk.Frame):
 
 		meter = ttk.Meter(self,
                     metersize=250,
+					amounttotal=100,
                     padding=20,
                     stripethickness=2,
                     amountused=50,
                     subtext='Temperature',
-                    textright='%',
+                    textright='°C',
                     bootstyle='success',
                     interactive=True
                     ).place(relx=0.5, rely=0.15, anchor='n')
@@ -117,24 +127,24 @@ class Page1(tk.Frame):
 		label2 = ttk.Label(self)
 		label2.place(anchor = "center", relx = 0.5, rely = 0.90)
 	
-		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color="#76BA1B", hover_color="#ACDF87",
-                                                 text ="StartPage", command = lambda : controller.show_frame(StartPage))
-		button1 = customtkinter.CTkButton(label2, text ="Temperature", command = lambda : controller.show_frame(Page1))
+		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color= "#FFFFFF", hover_color= "#7EC8E3",
+                                                 text ="Home Page", command = lambda : controller.show_frame(StartPage))
+		button1 = customtkinter.CTkButton(label2, text ="Temperature", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page1))
 	
-		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", command = lambda : controller.show_frame(Page2))
+		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture",fg_color= "#FFFFFF", hover_color= "#7EC8E3", command = lambda : controller.show_frame(Page2))
 
-		button3 = customtkinter.CTkButton(label2, text ="Humidity", command = lambda : controller.show_frame(Page3))
+		button3 = customtkinter.CTkButton(label2, text ="Humidity",fg_color= "#FFFFFF", hover_color= "#7EC8E3", command = lambda : controller.show_frame(Page3))
 
-		button4 = customtkinter.CTkButton(label2, text ="Water Level", command = lambda : controller.show_frame(Page4))
+		button4 = customtkinter.CTkButton(label2, text ="Water Level", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page4))
 
 	
 		# putting the button in its place by
 		# using grid
 		button.place(anchor = "center", relx = 0.5, rely = 0.75)
-		button1.grid(row = 1, column = 1)
-		button2.grid(row = 1, column = 2)
-		button3.grid(row = 2, column = 1)
-		button4.grid(row = 2, column = 2)
+		button1.grid(row = 1, column = 1, padx = 5, pady=5)
+		button2.grid(row = 1, column = 2, padx = 5, pady=5)
+		button3.grid(row = 2, column = 1, padx = 5, pady=5)
+		button4.grid(row = 2, column = 2, padx = 5, pady=5)
 
 # third window frame page2
 class Page2(tk.Frame):
@@ -148,6 +158,7 @@ class Page2(tk.Frame):
                     metersize=250,
                     padding=20,
                     amounttotal=100,
+					stripethickness=2,
                     amountused=70,
                     textright='%',
                     subtext='Soil Moisture',
@@ -160,24 +171,24 @@ class Page2(tk.Frame):
 	
 		# button to show frame 2 with text
 		# layout2
-		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color="#76BA1B", hover_color="#ACDF87",
-                                                 text ="StartPage", command = lambda : controller.show_frame(StartPage))
-		button1 = customtkinter.CTkButton(label2, text ="Temperature", command = lambda : controller.show_frame(Page1))
+		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color= "#FFFFFF", hover_color= "#7EC8E3",
+                                                 text ="Home Page", command = lambda : controller.show_frame(StartPage))
+		button1 = customtkinter.CTkButton(label2, text ="Temperature", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page1))
 	
-		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", command = lambda : controller.show_frame(Page2))
+		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page2))
 
-		button3 = customtkinter.CTkButton(label2, text ="Humidity", command = lambda : controller.show_frame(Page3))
+		button3 = customtkinter.CTkButton(label2, text ="Humidity", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page3))
 
-		button4 = customtkinter.CTkButton(label2, text ="Water Level", command = lambda : controller.show_frame(Page4))
+		button4 = customtkinter.CTkButton(label2, text ="Water Level",fg_color= "#FFFFFF", hover_color= "#7EC8E3", command = lambda : controller.show_frame(Page4))
 
 	
 		# putting the button in its place by
 		# using grid
 		button.place(anchor = "center", relx = 0.5, rely = 0.75)
-		button1.grid(row = 1, column = 1)
-		button2.grid(row = 1, column = 2)
-		button3.grid(row = 2, column = 1)
-		button4.grid(row = 2, column = 2)
+		button1.grid(row = 1, column = 1, padx = 5, pady=5)
+		button2.grid(row = 1, column = 2, padx = 5, pady=5)
+		button3.grid(row = 2, column = 1, padx = 5, pady=5)
+		button4.grid(row = 2, column = 2, padx = 5, pady=5)
 
 # fourth window frame page2
 class Page3(tk.Frame):
@@ -191,10 +202,11 @@ class Page3(tk.Frame):
                     metersize=250,
                     padding=20,
                     amounttotal=100,
+					stripethickness=2,
                     amountused=70,
                     textright='%',
                     subtext='Humidity',
-                    bootstyle='info',
+                    bootstyle='danger',
                     interactive=True
                     ).place(relx=0.5, rely=0.15, anchor='n')
 
@@ -204,24 +216,24 @@ class Page3(tk.Frame):
 	
 		# button to show frame 2 with text
 		# layout2
-		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color="#76BA1B", hover_color="#ACDF87",
-                                                 text ="StartPage", command = lambda : controller.show_frame(StartPage))
-		button1 = customtkinter.CTkButton(label2, text ="Temperature", command = lambda : controller.show_frame(Page1))
+		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color= "#FFFFFF", hover_color= "#7EC8E3",
+                                                 text ="Home Page", command = lambda : controller.show_frame(StartPage))
+		button1 = customtkinter.CTkButton(label2, text ="Temperature", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page1))
 	
-		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", command = lambda : controller.show_frame(Page2))
+		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page2))
 
-		button3 = customtkinter.CTkButton(label2, text ="Humidity", command = lambda : controller.show_frame(Page3))
+		button3 = customtkinter.CTkButton(label2, text ="Humidity", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page3))
 
-		button4 = customtkinter.CTkButton(label2, text ="Water Level", command = lambda : controller.show_frame(Page4))
+		button4 = customtkinter.CTkButton(label2, text ="Water Level", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page4))
 
 	
 		# putting the button in its place by
 		# using grid
 		button.place(anchor = "center", relx = 0.5, rely = 0.75)
-		button1.grid(row = 1, column = 1)
-		button2.grid(row = 1, column = 2)
-		button3.grid(row = 2, column = 1)
-		button4.grid(row = 2, column = 2)
+		button1.grid(row = 1, column = 1, padx = 5, pady=5)
+		button2.grid(row = 1, column = 2, padx = 5, pady=5)
+		button3.grid(row = 2, column = 1, padx = 5, pady=5)
+		button4.grid(row = 2, column = 2, padx = 5, pady=5)
 
 # fifth window frame page2
 class Page4(tk.Frame):
@@ -234,10 +246,11 @@ class Page4(tk.Frame):
                     metersize=250,
                     padding=20,
                     amounttotal=100,
+					stripethickness=2,
                     amountused=70,
                     textright='%',
                     subtext='Water Level',
-                    bootstyle='info',
+                    bootstyle='primary',
                     interactive=True
                     ).place(relx=0.5, rely=0.15, anchor='n')
 
@@ -246,24 +259,24 @@ class Page4(tk.Frame):
 	
 		# button to show frame 2 with text
 		# layout2
-		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color="#76BA1B", hover_color="#ACDF87",
-                                                 text ="StartPage", command = lambda : controller.show_frame(StartPage))
-		button1 = customtkinter.CTkButton(label2, text ="Temperature", command = lambda : controller.show_frame(Page1))
+		button = customtkinter.CTkButton(self, width=40, height=40, corner_radius=40,fg_color= "#FFFFFF", hover_color= "#7EC8E3",
+                                                 text ="Home Page", command = lambda : controller.show_frame(StartPage))
+		button1 = customtkinter.CTkButton(label2, text ="Temperature",fg_color= "#FFFFFF", hover_color= "#7EC8E3", command = lambda : controller.show_frame(Page1))
 	
-		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", command = lambda : controller.show_frame(Page2))
+		button2 = customtkinter.CTkButton(label2, text ="Soil Moisture", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page2))
 
-		button3 = customtkinter.CTkButton(label2, text ="Humidity", command = lambda : controller.show_frame(Page3))
+		button3 = customtkinter.CTkButton(label2, text ="Humidity", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page3))
 
-		button4 = customtkinter.CTkButton(label2, text ="Water Level", command = lambda : controller.show_frame(Page4))
+		button4 = customtkinter.CTkButton(label2, text ="Water Level",fg_color= "#FFFFFF", hover_color= "#7EC8E3", command = lambda : controller.show_frame(Page4))
 
 	
 		# putting the button in its place by
 		# using grid
 		button.place(anchor = "center", relx = 0.5, rely = 0.75)
-		button1.grid(row = 1, column = 1)
-		button2.grid(row = 1, column = 2)
-		button3.grid(row = 2, column = 1)
-		button4.grid(row = 2, column = 2)
+		button1.grid(row = 1, column = 1, padx = 5, pady=5)
+		button2.grid(row = 1, column = 2, padx = 5, pady=5)
+		button3.grid(row = 2, column = 1, padx = 5, pady=5)
+		button4.grid(row = 2, column = 2, padx = 5, pady=5)
 
 
 if __name__ == '__main__':
@@ -272,6 +285,7 @@ if __name__ == '__main__':
     root.title("Automatic Irrigation System")
     root.geometry("300x500") #You want the size of the app to be 500x500
     root.resizable(0, 0)
-    style = ttk.Style("superhero")
+    # style = ttk.Style(bg = "#FFFFFF")
     
+
     root.mainloop()
