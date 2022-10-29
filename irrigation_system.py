@@ -337,9 +337,9 @@ if __name__ == '__main__':
 
     root = tkinterApp()
     root.title("Automatic Irrigation System")
-    root.geometry("300x500") #You want the size of the app to be 500x500
+    root.geometry("300x500")
     root.resizable(0, 0)
-    # style = ttk.Style(bg = "#FFFFFF")
+
     
 
     root.mainloop()
