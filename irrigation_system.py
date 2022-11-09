@@ -83,7 +83,10 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         
         label = ttk.Label(self, text ="Farm", font = "-size 16")
-        label.place(anchor = "center", relx = 0.5, rely = 0.05)
+        label.place(anchor = "ne", relx = 0.50, rely = 0.04)
+
+        switch = customtkinter.CTkSwitch(self, text="Wifi")
+        switch.place(anchor = "nw", relx = 0.55, rely = 0.05)
                 
         label2 = ttk.Label(self)
         label2.place(anchor = "center", relx = 0.5, rely = 0.90)
@@ -105,8 +108,8 @@ class StartPage(tk.Frame):
         icon_humi = PhotoImage(file = r"C:\Users\callm\Documents\GitHub\automatic_irrigation_system\humidity_mid_FILL0_wght400_GRAD0_opsz48.png")
         icon_moist = PhotoImage(file = r"C:\Users\callm\Documents\GitHub\automatic_irrigation_system\icons8-moisture-48.png")
 
-        button1 = customtkinter.CTkButton(label2, image = icon_therm, bd= 1, text ="", fg_color= "#FFFFFF", hover_color= "#7EC8E3", width=100, height=100,command = lambda : controller.show_frame(Page1))
-        button2 = customtkinter.CTkButton(label2, image = icon_moist, text ="", fg_color= "#FFFFFF", hover_color= "#7EC8E3",width=100, height=100,command = lambda : controller.show_frame(Page2))
+        button1 = customtkinter.CTkButton(label2, image = icon_therm, text ="", fg_color= "#FFFFFF", hover_color= "#7EC8E3", width=100, height=100, command = lambda : controller.show_frame(Page1))
+        button2 = customtkinter.CTkButton(label2, image = icon_moist, text ="", fg_color= "#FFFFFF", hover_color= "#7EC8E3",width=100, height=100, command = lambda : controller.show_frame(Page2))
         button3 = customtkinter.CTkButton(label2, image = icon_humi, text ="",fg_color= "#FFFFFF",hover_color= "#7EC8E3",width=100, height=100, command = lambda : controller.show_frame(Page3))
         button4 = customtkinter.CTkButton(label2, image = icon_waterl, text ="",fg_color= "#FFFFFF",hover_color= "#7EC8E3",width=100, height=100, command = lambda : controller.show_frame(Page4))
 
@@ -123,7 +126,7 @@ class StartPage(tk.Frame):
         # separator.place(relx=0.47, rely=0, relwidth=0.2, relheight=1)
         
 
-        button.grid(row = 2, column = 0	, padx = 5, pady=5)
+        button.grid(row = 2, column = 0	, padx = 5, pady=12)
         button1.grid(row = 1, column = 1, padx = 10, pady = 5)
         separator1.grid(row = 2, column = 1, padx = 10)
         button2.grid(row = 1, column = 2, padx = 10, pady = 5)
@@ -132,6 +135,7 @@ class StartPage(tk.Frame):
         separator3.grid(row = 4, column = 1, padx = 10, pady = 5)
         button4.grid(row = 3, column = 2, padx = 10, pady = 5)
         separator4.grid(row = 4, column = 2, padx = 10, pady = 5)
+        
 
 
                 
@@ -322,6 +326,8 @@ class Page4(tk.Frame):
 		button3 = customtkinter.CTkButton(label2, text ="Humidity", fg_color= "#FFFFFF", hover_color= "#7EC8E3",command = lambda : controller.show_frame(Page3))
 
 		button4 = customtkinter.CTkButton(label2, text ="Water Level",fg_color= "#FFFFFF", hover_color= "#7EC8E3", command = lambda : controller.show_frame(Page4))
+
+		
 
 	
 		# putting the button in its place by
